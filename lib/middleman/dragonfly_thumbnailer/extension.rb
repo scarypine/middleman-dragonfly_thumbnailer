@@ -1,3 +1,5 @@
+require 'dragonfly'
+
 module Middleman
   module DragonflyThumbnailer
     class Extension < Middleman::Extension
