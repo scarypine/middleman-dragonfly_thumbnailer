@@ -28,7 +28,7 @@ During a build, the thumbnails will be saved next to original image in a sub dir
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/middleman-dragonfly_thumbnailer/fork )
+1. Fork it ( https://github.com/scarypine/middleman-dragonfly_thumbnailer/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -36,4 +36,4 @@ During a build, the thumbnails will be saved next to original image in a sub dir
 
 ## License
 
-Copyright (c) 2014 Andrew White. MIT Licensed, see LICENSE for details.
+Copyright (c) 2014 Andrew White. MIT Licensed, see LICENSE.txt for details.
