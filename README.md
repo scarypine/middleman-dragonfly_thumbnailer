@@ -24,7 +24,7 @@ The second argument is a geometry string which specifies the dimensions and opti
 
 When running Middleman in development, thumbnails will be generated on the fly and encoded in data URLs.
 
-During a build, the thumbnails will be saved next to original image in a sub directory named from the geometry string, e.g. `images/image.png` becomes `images/100x100/image.png`.
+During a build, the thumbnails will be saved next to original image in a sub directory named from the geometry string, so the thumbnail for `images/image.png` will be saved as `images/100x100/image.png`.
 
 ## Contributing
 
