@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['andrew@vohm.com']
   spec.summary       = 'Thumbnail generation with Dragonfly'
   spec.description   = "Middleman Dragonfly Thumbnailer is a Middleman extension that lets you easily create thumbnails using Dragonfly's thumb processor."
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/scarypine/middleman-dragonfly_thumbnailer'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
