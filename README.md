@@ -16,6 +16,12 @@ Or install it yourself as:
 
     $ gem install middleman-dragonfly_thumbnailer
 
+## Configuration
+
+Just add the following to your config.rb file:
+
+    activate :dragonfly_thumbnailer
+
 ## Usage
 
     <%= thumb_tag 'image.png', '100x100#', class: 'thumbnail' %>
