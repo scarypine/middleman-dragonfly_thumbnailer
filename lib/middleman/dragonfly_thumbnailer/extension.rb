@@ -24,14 +24,14 @@ module Middleman
                   build_path(image))
       end
 
-      def thumb(path, geometry)
+      def thumb(path, geometry, image_options = {})
         absolute_path = absolute_source_path path
         return unless File.exist?(absolute_path)
 
         image = ::Dragonfly.app.fetch_file(absolute_path)
         image.meta['original_path'] = path
         image.meta['geometry'] = geometry
-        image = image.thumb(geometry)
+        image = image.thumb(geometry, image_options)
 
         if app.build?
           persist_file(image)
@@ -41,6 +41,15 @@ module Middleman
         end
       end
 
+      def extract_image_options(options)
+        image_options = {
+          'format' => options.delete(:format),
+          'frame'  => options.delete(:frame)
+        }.delete_if { |_k, v| v.nil? }
+
+        return options, image_options
+      end
+
       def persist_file(image)
         path = absolute_build_path(image)
         image.to_file(path).close
@@ -48,12 +57,20 @@ module Middleman
 
       helpers do
         def thumb_tag(path, geometry, options = {})
-          url = extensions[:dragonfly_thumbnailer].thumb(path, geometry)
+          extension = extensions[:dragonfly_thumbnailer]
+
+          options, image_options = extension.extract_image_options(options)
+          url = extension.thumb(path, geometry, image_options)
+
           image_tag(url, options) if url
         end
 
-        def thumb_path(path, geometry)
-          url = extensions[:dragonfly_thumbnailer].thumb(path, geometry)
+        def thumb_path(path, geometry, options = {})
+          extension = extensions[:dragonfly_thumbnailer]
+
+          _options, image_options = extension.extract_image_options(options)
+          url = extension.thumb(path, geometry, image_options)
+
           image_path(url) if url
         end
       end
