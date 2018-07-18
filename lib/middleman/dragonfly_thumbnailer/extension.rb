@@ -33,9 +33,12 @@ module Middleman
         image.meta['geometry'] = geometry
         image = image.thumb(geometry)
 
-        persist_file(image) if app.build?
-
-        image
+        if app.build?
+          persist_file(image)
+          build_path(image)
+        else
+          image.b64_data
+        end
       end
 
       def persist_file(image)
@@ -45,16 +48,13 @@ module Middleman
 
       helpers do
         def thumb_tag(path, geometry, options = {})
-          image = extensions[:dragonfly_thumbnailer].thumb(path, geometry)
-          return unless image
+          url = extensions[:dragonfly_thumbnailer].thumb(path, geometry)
+          image_tag(url, options) if url
+        end
 
-          if environment == :development
-            url = image.b64_data
-          else
-            url = extensions[:dragonfly_thumbnailer].build_path(image)
-          end
-
-          image_tag(url, options)
+        def thumb_path(path, geometry)
+          url = extensions[:dragonfly_thumbnailer].thumb(path, geometry)
+          image_path(url) if url
         end
       end
 
